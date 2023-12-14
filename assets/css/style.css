@@ -5,13 +5,27 @@
 }
 
 .body {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
 }
 
-label {
+#display {
     padding: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 50px;
+}
+
+#user-input {
+    width: 300px;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 50px;
 }
@@ -24,10 +38,7 @@ label {
     border-radius: 4px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 25px;
-    cursor: pointer;
-}
-
-#generate {
     background-color: #4caf50;
     color: white;
+    cursor: pointer;
 }
