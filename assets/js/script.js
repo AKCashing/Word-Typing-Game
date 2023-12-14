@@ -1,4 +1,12 @@
-fetch('https://swapi.dev/api/people')
+var bodyEl = document.getElementById("body")
+
+var pageNumber = getRandomInt(8) + 1
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+fetch('https://swapi.dev/api/people/?page=' + pageNumber)
   .then(function (response) {
     return response.json();
   })
@@ -23,4 +31,17 @@ fetch('https://swapi.dev/api/people')
       return Math.floor(Math.random() * max);
     }
     
+  });
+
+var apiKey = 'vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB';
+
+  fetch('https://api.nasa.gov/planetary/apod?date=2023-12-13&api_key=' + apiKey)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    var imageRequest = data.url;
+
+    bodyEl.style.backgroundImage = "url("+ imageRequest +")";
   });

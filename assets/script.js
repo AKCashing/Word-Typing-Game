@@ -1,10 +1,10 @@
-console.log("hello world!");
+//console.log("hello world!");
    
 
 
 
 
-http swapi.dev/api/planets/1/
+//http swapi.dev/api/planets/1/
 
 
 
