@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+.header {
+    padding: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+
 /* Homepage formatting */
 #homepage {
     width: 100vw;
@@ -19,6 +25,7 @@
     padding: 40px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 60px;
+    -webkit-text-stroke: 2px white;
 }
 
 /* Description styling */
@@ -26,6 +33,7 @@
     padding: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 40px;
+    -webkit-text-stroke: 2px white;
 }
 
 /* Start-Button styling */
