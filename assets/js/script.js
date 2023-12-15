@@ -1,24 +1,5 @@
 var bodyEl = document.getElementById("body")
 
-var pageNumber = getRandomInt(8) + 1
-
-//Adding a timer
-var timerEl = document.createElement("h1");
-var timeLeft = 120;
-
-function quizTimer() {
-    var countDown = setInterval(function() {
-    timeLeft--;
-    timerEl.textContent = timeLeft + " seconds left to complete.";
-
-    if(timeLeft === 0) {
-        clearInterval(countDown);
-
-        timerEl.textContent = "Your time is up!";
-    }
-    }, 1000);
-}
-
 // Grab the Homepage and Start-Button element ID's
 var homepageEl = document.getElementById('homepage');
 var startButtonEl = document.getElementById('start');
@@ -68,7 +49,7 @@ var gameScore = 0;
 var scoreDisplay = document.getElementById("score");
 
 // Randomly grab a number(0-8)
-var getRandomPageNumber = 6 //getRandomInt(8) + 1;
+var getRandomPageNumber = getRandomInt(9);
 
 // Fetch the Star Wars API
 fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
