@@ -1,4 +1,5 @@
-var bodyEl = document.getElementById("body")
+// Grab the Body element ID
+var bodyEl = document.getElementById("body");
 
 // Grab the Homepage and Start-Button element ID's
 var homepageEl = document.getElementById('homepage');
@@ -9,7 +10,12 @@ var gamepageEl = document.getElementById('gamepage');
 var displayEl = document.getElementById('display');
 var userInputEl = document.getElementById('user-input');
 
-fetch('https://api.nasa.gov/planetary/apod?date=2023-12-13&api_key=' + apiKey)
+// Create Timer
+var timerEl = document.getElementById('timer');
+var timeLeft = 10;
+
+// Fetch the NASA Api
+fetch('https://api.nasa.gov/planetary/apod?date=2023-12-13&api_key=vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB')
   .then(function (response) {
     return response.json();
   })
@@ -20,14 +26,11 @@ fetch('https://api.nasa.gov/planetary/apod?date=2023-12-13&api_key=' + apiKey)
     bodyEl.style.backgroundImage = "url("+ imageRequest +")";
   });
 
-//Adding a timer
-var timerEl = document.createElement("h1");
-var timeLeft = 120;
-
-function quizTimer() {
+// Creating Timer function
+function timer() {
     var countDown = setInterval(function() {
     timeLeft--;
-    timerEl.textContent = timeLeft + " seconds left to complete.";
+    timerEl.textContent = 'Time: '+timeLeft;
 
     if(timeLeft === 0) {
         clearInterval(countDown);
@@ -46,7 +49,7 @@ function getRandomInt(max) {
 var getRandomPageNumber = getRandomInt(9);
 
 // Fetch the Star Wars API
-fetch('https://swapi.dev/api/people/?page='+ getRandomPageNumber)
+fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
   .then(function (response) {
     return response.json();
   })
@@ -57,26 +60,32 @@ fetch('https://swapi.dev/api/people/?page='+ getRandomPageNumber)
 
     // When the user clicks the button 'Start', begin the game
     startButtonEl.addEventListener('click', function(event){
-      var getRandomNumber = getRandomInt(fetchRequest.results.length);
 
-      displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
-
+      // Hide the Homepage and reveal the Gamepage
       homepageEl.style.display = 'none';
       gamepageEl.style.display = 'flex';
-      quizTimer();
-      
-      //Use Nasa API to get the background image.
-      var apiKey = 'vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB';
+
+      // Timer begins
+      timer();
+
+      // Roll a random number
+      var getRandomNumber = getRandomInt(fetchRequest.results.length);
+
+      // Display the word onto the page
+      displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
     })
 
     // When the User presses 'Enter', change the word and clear the input field
     userInputEl.addEventListener('keypress', function(event){
       if (event.key === 'Enter'){
 
-        var getRandomNumber = getRandomInt(fetchRequest.results.length);
+        // Roll a random number
+        getRandomNumber = getRandomInt(fetchRequest.results.length);
 
+        // Display the word onto the page
         displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
 
+        // Clear the input field
         userInputEl.value = '';
       }
     })
