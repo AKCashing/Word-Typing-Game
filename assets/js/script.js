@@ -1,19 +1,3 @@
-//Adding a timer
-var timerEl = document.createElement("h1");
-var timeLeft = 120;
-
-function quizTimer() {
-    var countDown = setInterval(function() {
-    timeLeft--;
-    timerEl.textContent = timeLeft + " seconds left to complete.";
-
-    if(timeLeft === 0) {
-        clearInterval(countDown);
-
-        timerEl.textContent = "Your time is up!";
-    }
-    }, 1000);
-}
 // Grab the Body element ID
 var bodyEl = document.getElementById("body");
 
@@ -28,7 +12,7 @@ var userInputEl = document.getElementById('user-input');
 
 // Create Timer
 var timerEl = document.getElementById('timer');
-var timeLeft = 10;
+var timeLeft = 60;
 
 // Fetch the NASA Api
 fetch('https://api.nasa.gov/planetary/apod?date=2023-12-13&api_key=vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB')
@@ -66,7 +50,7 @@ var gameScore = 0;
 var scoreDisplay = document.getElementById("score");
 
 // Randomly grab a number(0-8)
-var getRandomPageNumber = getRandomInt(8) + 1;
+var getRandomPageNumber = 6 //getRandomInt(8) + 1;
 
 // Fetch the Star Wars API
 fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
@@ -81,6 +65,10 @@ fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
     // When the user clicks the button 'Start', begin the game
     startButtonEl.addEventListener('click', function(event){
 
+      
+      // Roll a random number
+      var getRandomNumber = getRandomInt(fetchRequest.results.length);
+
       displayEl.innerHTML = removeAccents(fetchRequest.results[getRandomNumber].name);
       
       homepageEl.style.display = 'none';
@@ -88,9 +76,6 @@ fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
 
       // Timer begins
       timer();
-
-      // Roll a random number
-      var getRandomNumber = getRandomInt(fetchRequest.results.length);
 
       // Display the word onto the page
       displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
@@ -108,7 +93,7 @@ fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
         var getRandomNumber = getRandomInt(fetchRequest.results.length);
 
         // Display the word onto the page
-        displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
+        displayEl.innerHTML =  removeAccents(fetchRequest.results[getRandomNumber].name);
 
         // Clear the input field
         userInputEl.value = '';
@@ -117,5 +102,5 @@ fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
   });
 
   function removeAccents(string){
-    return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return string.normalize("NFD").replace(/\p{Diacritic}/gu,"");
   }
