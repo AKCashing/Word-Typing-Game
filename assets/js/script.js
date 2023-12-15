@@ -19,38 +19,45 @@ function quizTimer() {
     }, 1000);
 }
 
+// Grab the Homepage and Start-Button element ID's
+var homepageEl = document.getElementById('homepage');
+var startButtonEl = document.getElementById('start');
+
+// Grab the Gamepage, Display, and User-Input element ID's
+var gamepageEl = document.getElementById('gamepage');
+var displayEl = document.getElementById('display');
+var userInputEl = document.getElementById('user-input');
+
+// Random number generator function
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-fetch('https://swapi.dev/api/people/?page=' + pageNumber)
+// Randomly grab a number(0-8)
+var getRandomPageNumber = getRandomInt(9);
+
+// Fetch the Star Wars API
+fetch('https://swapi.dev/api/people/?page='+ getRandomPageNumber)
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
     console.log(data);
-
+    // Grab the requested list of people on the API page
     var fetchRequest = data;
 
-    var buttonEl = document.getElementById('generate');
-    var wordEl = document.getElementById('fetch-word');
+    // When the user clicks the button 'Start', begin the game
+    startButtonEl.addEventListener('click', function(event){
+      var getRandomNumber = getRandomInt(fetchRequest.results.length);
 
-    buttonEl.addEventListener('click', function(event) {
-
-      var num = getRandomInt(fetchRequest.results.length);
-
-      console.log(fetchRequest.results[num].name)
-
-      wordEl.innerHTML = fetchRequest.results[num].name;
-    })
-
-    function getRandomInt(max) {
-      return Math.floor(Math.random() * max);
-    }
-    
-  });
-
-var apiKey = 'vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB';
+      displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
+      
+      homepageEl.style.display = 'none';
+      gamepageEl.style.display = 'flex';
+      quizTimer();
+      
+      //Use Nasa API to get the background image.
+      var apiKey = 'vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB';
 
   fetch('https://api.nasa.gov/planetary/apod?date=2023-12-13&api_key=' + apiKey)
   .then(function (response) {
@@ -62,5 +69,16 @@ var apiKey = 'vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB';
 
     bodyEl.style.backgroundImage = "url("+ imageRequest +")";
   });
+    })
 
-  quizTimer();
+    // When the User presses 'Enter', change the word and clear the input field
+    userInputEl.addEventListener('keypress', function(event){
+      if (event.key === 'Enter'){
+        var getRandomNumber = getRandomInt(fetchRequest.results.length);
+
+        displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
+
+        userInputEl.value = '';
+      }
+    })
+  });
