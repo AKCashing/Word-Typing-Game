@@ -2,6 +2,23 @@ var bodyEl = document.getElementById("body")
 
 var pageNumber = getRandomInt(8) + 1
 
+//Adding a timer
+var timerEl = document.createElement("h1");
+var timeLeft = 120;
+
+function quizTimer() {
+    var countDown = setInterval(function() {
+    timeLeft--;
+    timerEl.textContent = timeLeft + " seconds left to complete.";
+
+    if(timeLeft === 0) {
+        clearInterval(countDown);
+
+        timerEl.textContent = "Your time is up!";
+    }
+    }, 1000);
+}
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -45,3 +62,5 @@ var apiKey = 'vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB';
 
     bodyEl.style.backgroundImage = "url("+ imageRequest +")";
   });
+
+  quizTimer();
