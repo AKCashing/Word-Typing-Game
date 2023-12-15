@@ -7,6 +7,8 @@ var gamepageEl = document.getElementById('gamepage');
 var displayEl = document.getElementById('display');
 var userInputEl = document.getElementById('user-input');
 
+var score = 0;
+
 // Random number generator function
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -30,7 +32,7 @@ fetch('https://swapi.dev/api/people/?page='+ getRandomPageNumber)
       var getRandomNumber = getRandomInt(fetchRequest.results.length);
 
       displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
-      
+
       homepageEl.style.display = 'none';
       gamepageEl.style.display = 'flex';
     })
@@ -38,6 +40,11 @@ fetch('https://swapi.dev/api/people/?page='+ getRandomPageNumber)
     // When the User presses 'Enter', change the word and clear the input field
     userInputEl.addEventListener('keypress', function(event){
       if (event.key === 'Enter'){
+        // if (userInputEl === fetchRequest.results[getRandomNumber].name){
+        //   score++;
+        // }
+        // console.log(score);
+
         var getRandomNumber = getRandomInt(fetchRequest.results.length);
 
         displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
