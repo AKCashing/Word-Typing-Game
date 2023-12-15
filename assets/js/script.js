@@ -1,4 +1,5 @@
-var bodyEl = document.getElementById("body")
+// Grab the Body element ID
+var bodyEl = document.getElementById("body");
 
 // Grab the Homepage and Start-Button element ID's
 var homepageEl = document.getElementById('homepage');
@@ -11,7 +12,7 @@ var userInputEl = document.getElementById('user-input');
 
 // Create Timer
 var timerEl = document.getElementById('timer');
-var timeLeft = 10;
+var timeLeft = 60;
 
 // Fetch the NASA Api
 fetch('https://api.nasa.gov/planetary/apod?date=2023-12-13&api_key=vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB')
@@ -65,6 +66,10 @@ fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
     startButtonEl.addEventListener('click', function(event){
       var getRandomNumber = getRandomInt(fetchRequest.results.length);
 
+      
+      // Roll a random number
+      var getRandomNumber = getRandomInt(fetchRequest.results.length);
+
       displayEl.innerHTML = removeAccents(fetchRequest.results[getRandomNumber].name);
       
       homepageEl.style.display = 'none';
@@ -72,9 +77,6 @@ fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
 
       // Timer begins
       timer();
-
-      // Roll a random number
-      var getRandomNumber = getRandomInt(fetchRequest.results.length);
 
       // Display the word onto the page
       displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
@@ -88,10 +90,11 @@ fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
         gameScore++;
         scoreDisplay.textContent = gameScore;
 
+        // Roll a random number
         var getRandomNumber = getRandomInt(fetchRequest.results.length);
 
         // Display the word onto the page
-        displayEl.innerHTML = fetchRequest.results[getRandomNumber].name;
+        displayEl.innerHTML =  removeAccents(fetchRequest.results[getRandomNumber].name);
 
         // Clear the input field
         userInputEl.value = '';
@@ -100,5 +103,5 @@ fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
   });
 
   function removeAccents(string){
-    return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return string.normalize("NFD").replace(/\p{Diacritic}/gu,"");
   }
