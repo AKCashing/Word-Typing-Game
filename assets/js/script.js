@@ -10,6 +10,10 @@ var gamepageEl = document.getElementById('gamepage');
 var displayEl = document.getElementById('display');
 var userInputEl = document.getElementById('user-input');
 
+//grab the Scorescreen ID, hide the scorescreen
+var scoreScreen = document.getElementById('score-screen');
+scoreScreen.style.display = 'none';
+
 // Create Timer
 var timerEl = document.getElementById('timer');
 var timeLeft = 60;
@@ -35,6 +39,9 @@ function timer() {
     if(timeLeft === 0) {
         clearInterval(countDown);
 
+        homepageEl.style.display = 'none';
+        gamepageEl.style.display = 'none';
+        scoreScreen.style.display = 'flex';
         timerEl.textContent = "Your time is up!";
     }
     }, 1000);
@@ -50,7 +57,7 @@ var gameScore = 0;
 var scoreDisplay = document.getElementById("score");
 
 // Randomly grab a number(0-8)
-var getRandomPageNumber = 6 //getRandomInt(8) + 1;
+var getRandomPageNumber = getRandomInt(8) + 1;
 
 // Fetch the Star Wars API
 fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
