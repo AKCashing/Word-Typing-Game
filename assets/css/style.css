@@ -87,6 +87,14 @@
     -webkit-text-stroke: 1px white;
 }
 
+/*score-list styling*/
+#score-list {
+    padding: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    -webkit-text-stroke: 1px white;
+}
+
 /* User-Input box styling */
 #user-input {
     width: 300px;

@@ -38,6 +38,7 @@ function timer() {
 
     if(timeLeft === 0) {
         clearInterval(countDown);
+        localStorage.setItem('gameScore', gameScore);
 
         homepageEl.style.display = 'none';
         gamepageEl.style.display = 'none';
@@ -58,6 +59,25 @@ var scoreDisplay = document.getElementById("score");
 
 // Randomly grab a number(0-8)
 var getRandomPageNumber = getRandomInt(8) + 1;
+
+function displayScores() {
+var gameScore = localStorage.getItem('gameScore');
+
+    if (gameScore !== null) {
+      var ul = document.createElement('ul');
+
+      var li = document.createElement('li');
+      li.textContent = 'Game Score: ' + gameScore;
+      li.className = 'score-list-item';
+      li.id = 'score-list';
+      ul.appendChild(li);
+
+      document.body.appendChild(ul);
+    }
+  }
+document.getElementById('view-scores').addEventListener('click', function() {
+  displayScores();
+});
 
 // Fetch the Star Wars API
 fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)
