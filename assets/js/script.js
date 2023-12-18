@@ -16,7 +16,7 @@ scoreScreen.style.display = 'none';
 
 // Create Timer
 var timerEl = document.getElementById('timer');
-var timeLeft = 60;
+var timeLeft = 5;
 
 // Fetch the NASA Api
 fetch('https://api.nasa.gov/planetary/apod?date=2023-12-13&api_key=vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB')
@@ -61,13 +61,14 @@ var scoreDisplay = document.getElementById("score");
 var getRandomPageNumber = getRandomInt(8) + 1;
 
 function displayScores() {
-var gameScore = localStorage.getItem('gameScore');
+    var scoreList = localStorage.getItem('gameScore');
+    console.log(scoreList);
 
     if (gameScore !== null) {
       var ul = document.createElement('ul');
 
       var li = document.createElement('li');
-      li.textContent = 'Game Score: ' + gameScore;
+      li.textContent = 'Game Score: ' + scoreList;
       li.className = 'score-list-item';
       li.id = 'score-list';
       ul.appendChild(li);
