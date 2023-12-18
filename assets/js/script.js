@@ -1,6 +1,9 @@
 // Grab the Body element ID
 var bodyEl = document.getElementById("body");
 
+// Grab the Header element ID
+var headerEl = document.getElementsByClassName('header');
+
 // Grab the Homepage and Start-Button element ID's
 var homepageEl = document.getElementById('homepage');
 var startButtonEl = document.getElementById('start');
@@ -10,9 +13,13 @@ var gamepageEl = document.getElementById('gamepage');
 var displayEl = document.getElementById('display');
 var userInputEl = document.getElementById('user-input');
 
+//grab the Scorescreen ID, hide the scorescreen
+var scoreScreen = document.getElementById('score-screen');
+scoreScreen.style.display = 'none';
+
 // Create Timer
 var timerEl = document.getElementById('timer');
-var timeLeft = 60;
+var timeLeft = 5;
 
 // Fetch the NASA Api
 fetch('https://api.nasa.gov/planetary/apod?date=2023-12-13&api_key=vOwdgQmkO84FcC7PiaiPg85OU33T3xdJXNBhAfPB')
@@ -29,14 +36,18 @@ fetch('https://api.nasa.gov/planetary/apod?date=2023-12-13&api_key=vOwdgQmkO84Fc
 // Creating Timer function
 function timer() {
     var countDown = setInterval(function() {
-    timeLeft--;
-    timerEl.textContent = 'Time: '+timeLeft;
+      timeLeft--;
+      timerEl.textContent = 'Time: '+timeLeft;
 
-    if(timeLeft === 0) {
-        clearInterval(countDown);
+      if(timeLeft === 0) {
+          clearInterval(countDown);
+          localStorage.setItem('gameScore', gameScore);
 
-        timerEl.textContent = "Your time is up!";
-    }
+          homepageEl.style.display = 'none';
+          gamepageEl.style.display = 'none';
+          scoreScreen.style.display = 'flex';
+          timerEl.textContent = "Your time is up!";
+      }
     }, 1000);
 }
 
@@ -50,7 +61,26 @@ var gameScore = 0;
 var scoreDisplay = document.getElementById("score");
 
 // Randomly grab a number(0-8)
-var getRandomPageNumber = getRandomInt(9);
+var getRandomPageNumber = getRandomInt(8) + 1;
+
+function displayScores() {
+var gameScore = localStorage.getItem('gameScore');
+
+    if (gameScore !== null) {
+      var ul = document.createElement('ul');
+
+      var li = document.createElement('li');
+      li.textContent = 'Game Score: ' + gameScore;
+      li.className = 'score-list-item';
+      li.id = 'score-list';
+      ul.appendChild(li);
+
+      document.body.appendChild(ul);
+    }
+  }
+document.getElementById('view-scores').addEventListener('click', function() {
+  displayScores();
+});
 
 // Fetch the Star Wars API
 fetch('https://swapi.dev/api/people/?page='+getRandomPageNumber)

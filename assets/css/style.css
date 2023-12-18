@@ -5,6 +5,7 @@
 }
 
 .header {
+    display: none;
     padding: 30px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 40px;
@@ -27,6 +28,21 @@
     padding: 40px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 60px;
+    -webkit-text-stroke: 1px white;
+}
+
+/* Score-screen styling */
+#score-screen {
+    padding: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 60px;
+    -webkit-text-stroke: 1px white;
+}
+
+#results {
+    padding: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
     -webkit-text-stroke: 1px white;
 }
 
@@ -72,6 +88,14 @@
     -webkit-text-stroke: 1px white;
 }
 
+/*score-list styling*/
+#score-list {
+    padding: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    -webkit-text-stroke: 1px white;
+}
+
 /* User-Input box styling */
 #user-input {
     width: 300px;
@@ -82,8 +106,4 @@
     box-sizing: border-box;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 50px;
-}
-
-#score {
-    
 }
