@@ -31,7 +31,7 @@ Project Screenshot
 Demo
 
 Check out the live demo of the game here and put your typing skills to the test!
-
+Deployed Site: https://akcashing.github.io/Word-Typing-Game/ 
 
 
 
